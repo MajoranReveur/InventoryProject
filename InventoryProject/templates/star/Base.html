@@ -14,22 +14,41 @@
 </head>
 <body>
     <h1 style="text-align: center;">Inventory</h1>
-    {% if inv %}
+    {% if inv_before or inv_after %}
         <h2 style="text-align: center;">Current Data</h2>
+    {% else %}
+        <h2>No data has been entered yet.</h2>
+    {% endif %}
+    {%if inv_before %}
+        <h3 style="text-align: center;">Peremption date passed :</h3>
         <table style="border:1px solid black;margin-left:auto;margin-right:auto" >
             <tr>
                 <th style="padding-right:10px;padding-left:3px">GTIN</th>
                 <th style="padding-right:10px;padding-left:3px">Peremption</th>
             </tr>
+            {% for item in inv_before %}
             <tr>
-                {% for item in inv %}
                 <td style="padding-right:10px;padding-left:3px">{{item.gtin}}</td>
                 <td style="padding-right:10px;padding-left:3px">{{item.peremption}}</td>
             </tr>
-            {% endfor %}
+            {%endfor %}
         </table>
-    {% else %}
-        <h2>No data has been entered yet.</h2>
+    {% endif %}
+
+    {%if inv_after %}
+        <h3 style="text-align: center;">Still Edible :</h3>
+        <table style="border:1px solid black;margin-left:auto;margin-right:auto" >
+            <tr>
+                <th style="padding-right:10px;padding-left:3px">GTIN</th>
+                <th style="padding-right:10px;padding-left:3px">Peremption</th>
+            </tr>
+            {% for item in inv_after %}
+            <tr>
+                <td style="padding-right:10px;padding-left:3px">{{item.gtin}}</td>
+                <td style="padding-right:10px;padding-left:3px">{{item.peremption}}</td>
+            </tr>
+            {%endfor %}
+        </table>
     {% endif %}
     <div class = "container" align="center">
         {%block child_block%}
