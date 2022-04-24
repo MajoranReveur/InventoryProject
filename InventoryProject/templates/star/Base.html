@@ -3,36 +3,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Document</title>
+    <title>Homepage</title>
     <style>
         th,td{
-        border: 1px black solid;
+        border: 2px black solid;
         }
     </style>
 </head>
 <body>
-<h1>Inventory Page</h1>
-{% if inv %}
- <h1>Show Data</h1>
- <table>
-     <tr>
-         <th>GTIN</th>
-         <th>Peremption</th>
-     </tr>
- <tr>
-     {% for item in inv %}
-     <td>{{item.gtin}}</td>
-     <td>{{item.peremption}}</td>
- </tr>
-     {% endfor %}
-</table>
-{% else %}
- <h1>No Data</h1>
-{% endif %}
+    <h1 style="text-align: center;">Inventory</h1>
+    {% if inv %}
+        <h2 style="text-align: center;">Current Data</h2>
+        <table style="border:1px solid black;margin-left:auto;margin-right:auto" >
+            <tr>
+                <th style="padding-right:10px;padding-left:3px">GTIN</th>
+                <th style="padding-right:10px;padding-left:3px">Peremption</th>
+            </tr>
+            <tr>
+                {% for item in inv %}
+                <td style="padding-right:10px;padding-left:3px">{{item.gtin}}</td>
+                <td style="padding-right:10px;padding-left:3px">{{item.peremption}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>No data has been entered yet.</h2>
+    {% endif %}
     <div class = "container" align="center">
         {%block child_block%}
         {%endblock%}

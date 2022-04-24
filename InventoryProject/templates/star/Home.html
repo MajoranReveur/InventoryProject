@@ -2,7 +2,7 @@
 {% extends 'star/Base.html'%}
 {% load static %}
 {%block child_block%}
-<h1>Inventory Registration Form</h1>
+<h2>New Entries :</h2>
 <form method="post">
     {{form.as_p}}
     {% csrf_token %}
